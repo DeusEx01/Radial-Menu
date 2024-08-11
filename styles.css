@@ -1,8 +1,102 @@
-/*
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.radial_menu span {
+  color: white;
+  transform: rotate(calc(-360deg / 8 * var(--i)));
+  display: inline-block;
+  transition:  0.5s;
+}
+.radial_menu li a:hover span {
 
-If your plugin does not need CSS, delete this file.
+  text-shadow:
+  0 0 0.2px #fff,
+  0 0 0.2rem #fff;
+  transition:  0.3s;
+}
 
-*/
+
+
+.radial_menu {
+  position: fixed;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: scale(2);
+}
+
+.radial_menu li,
+.corner {
+  position: absolute;
+  left: 0;
+  list-style: none;
+  transform-origin: 100px;
+  transform: rotate(calc(360deg / 8 * var(--i)));
+  clip-path: polygon(0 0, 100% 35%, 100% 65%, 0% 100%);
+}
+
+.radial_menu li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 80px;
+  background-color: black;
+  opacity: 0.7;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+
+.radial_menu li a:hover,
+.toggle:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+.radial_menu li a:hover {
+  transform: translateX(5px);
+  border-radius: 50%;
+}
+
+
+
+.toggle {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: black;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2em;
+  transition: 0.5s;
+}
+/*Rounding element for middle radial_menu button. Probably is needed in changing approach for 'background' since we'll have random backgrounds we can't predict!!!*/
+.toggle-hidden {
+  content: '';
+  display: block;
+  width: 64px; /*Keep this value even due to a random rounding*/
+  height: 64px; /*Keep this value even due to a random rounding*/
+  z-index: 9000;
+  overflow: hidden;
+  position: absolute;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: var(--background-primary);  /*For better compability with background we need to tweak this value*/
+}
